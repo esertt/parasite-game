@@ -139,6 +139,8 @@ MonoBehaviour:
   speed: 0
   movement: 020000000200000002000000040000000400000004000000
   movePoint: {fileID: 7819049019742874366}
+  up: {fileID: 1801261246, guid: 773f9cf8febb4724e93930f5154f46a8, type: 3}
+  down: {fileID: 1801261246, guid: 773f9cf8febb4724e93930f5154f46a8, type: 3}
 --- !u!61 &8778858194943281836
 BoxCollider2D:
   m_ObjectHideFlags: 0

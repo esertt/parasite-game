@@ -70,6 +70,10 @@ public class puzzleAction : MonoBehaviour
             {
                 Debug.Log("Tile found at " + cellPos + ": " + tile.name);
             }
+            else if(Input.GetKeyDown(KeyCode.Space))
+            {
+                npcAction();
+            }
             else
             {
                 movePoint.position = newPos;

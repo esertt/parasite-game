@@ -155,6 +155,8 @@ MonoBehaviour:
   speed: 0
   movement: 01000000020000000300000004000000
   movePoint: {fileID: 3682920660385400071}
+  up: {fileID: -567201487, guid: 773f9cf8febb4724e93930f5154f46a8, type: 3}
+  down: {fileID: 13161043, guid: 773f9cf8febb4724e93930f5154f46a8, type: 3}
 --- !u!95 &-3213869247403302841
 Animator:
   serializedVersion: 7
