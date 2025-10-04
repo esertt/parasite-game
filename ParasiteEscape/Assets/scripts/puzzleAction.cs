@@ -5,8 +5,6 @@ using UnityEngine.Tilemaps;
 public class puzzleAction : MonoBehaviour
 {
     private bool isInfected;
-    private GameObject objToPossess;
-    private bool canPossess;
     private bool actionReady;
     private List<GameObject> objectsInLayer = new List<GameObject>();
 
@@ -39,17 +37,7 @@ public class puzzleAction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        foreach (GameObject obj in objectsInLayer)
-        {
-            if (Vector3.Distance(parasite.transform.position, obj.transform.position) <= 2.07)
-            {
-                canPossess = true;
-                objToPossess = obj;
-                break;
-            }
-        }
-
-        parasite.transform.position = Vector3.MoveTowards(parasite.transform.position, movePoint.position, speed * Time.deltaTime);
+        parasite.transform.position = Vector3.MoveTowards(parasite.transform.position, movePoint.position, speed*Time.deltaTime);
 
 
         if (Vector3.Distance(parasite.transform.position, movePoint.position) <= 0f) actionReady = true;
@@ -77,9 +65,16 @@ public class puzzleAction : MonoBehaviour
             {
                 Debug.Log("Tile found at " + cellPos + ": " + tile.name);
             }
-            else if (Input.GetKeyDown(KeyCode.Space))
+            else if(Input.GetKeyDown(KeyCode.Space))
             {
-                if(canPossess) { Possess(); }
+                foreach(GameObject obj in objectsInLayer)
+                { 
+                    if (Vector3.Distance(parasite.transform.position, obj.transform.position) <= 2.07)
+                    {
+                        Debug.Log(obj.name);
+                        break;
+                    }
+                }
                 npcAction();
             }
             else
@@ -95,15 +90,10 @@ public class puzzleAction : MonoBehaviour
         foreach (GameObject obj in objectsInLayer)
         {
             NPCLogic npc = obj.GetComponent<NPCLogic>();
-            if (npc != null) // Component varsa ï¿½alï¿½ï¿½tï¿½r
+            if (npc != null) // Component varsa çalýþtýr
             {
                 npc.Action();
             }
         }
-    }
-
-    private void Possess()
-    {
-        
     }
 }
