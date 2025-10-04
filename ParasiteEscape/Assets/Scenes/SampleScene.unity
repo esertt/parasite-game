@@ -226,6 +226,8 @@ MonoBehaviour:
   speed: 0
   movement: 020000000200000002000000040000000400000004000000
   movePoint: {fileID: 299304661}
+  up: {fileID: 0}
+  down: {fileID: 0}
 --- !u!1 &299304660
 GameObject:
   m_ObjectHideFlags: 0
