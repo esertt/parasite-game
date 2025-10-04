@@ -2,115 +2,149 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class puzzleAction : MonoBehaviour
+public class PuzzleAction : MonoBehaviour
 {
-    private string isInfected;
-    private bool actionReady;
-    private List<GameObject> objectsInLayer = new List<GameObject>();
-    private SpriteRenderer sr;
-    private Sprite sprite;
-
-    public int targetLayer;
-    public float speed = 5.0f;
-    public Transform movePoint;
-    public Tilemap tileMap;
+    [Header("Parasite Setup")]
     public GameObject parasite;
-    public bool NPCREQUEM = false;
+    public Transform movePoint;
+    public float speed = 5f;
+    private SpriteRenderer sr;
+    private string isInfected = "parasite";
+
+    [Header("Sprites")]
     public Sprite scientistSpriteYellow;
     public Sprite scientistSpriteBlue;
     public Sprite babySprite;
     public Sprite soldierSprite;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+
+    [Header("Tilemap & NPCs")]
+    public Tilemap tileMap;
+    public int targetLayer;
+    private List<GameObject> objectsInLayer = new List<GameObject>();
+
+    [Header("NPC Movement")]
+    public bool NPCREQUEM = false;
+
+    private bool actionReady = true;
+
+    private void Start()
     {
         isInfected = "parasite";
         movePoint.parent = null;
-        actionReady = true;
         sr = parasite.GetComponent<SpriteRenderer>();
 
-        // Get all objects in the scene
+        // Gather all objects in the target layer
         GameObject[] allObjects = GameObject.FindObjectsByType<GameObject>(FindObjectsSortMode.None);
-
         foreach (GameObject obj in allObjects)
         {
             if (obj.layer == targetLayer)
             {
                 objectsInLayer.Add(obj);
-                Debug.Log(obj.name);
+                Debug.Log("Found object: " + obj.name);
             }
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        parasite.transform.position = Vector3.MoveTowards(parasite.transform.position, movePoint.position, speed * Time.deltaTime);
-
-
-        if (Vector3.Distance(parasite.transform.position, movePoint.position) <= 0f) actionReady = true;
-        else actionReady = false;
+        MoveParasite();
         if (actionReady)
         {
-            bool moveNPC = false;
-            //first update the desire path
-            Vector3 newPos = movePoint.position;
-            if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1)
-            {
-                newPos = movePoint.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
-                moveNPC = true;
-            }
-            else if (Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1)
-            {
-                newPos = movePoint.position + new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f);
-                moveNPC = true;
-            }
+            HandleInputMovement();
+            CheckForPossession();
+            CheckForSoldierThreat();
+            if (NPCREQUEM) npcAction();
+        }
+    }
 
-            //check the desired path. If player can move then update the movePosition
-            Vector3Int cellPos = tileMap.WorldToCell(newPos);
-            TileBase tile = tileMap.GetTile(cellPos);
-            if (tile != null && tile.name == "tiletest_1")
+    private void MoveParasite()
+    {
+        parasite.transform.position = Vector3.MoveTowards(parasite.transform.position, movePoint.position, speed * Time.deltaTime);
+        actionReady = Vector3.Distance(parasite.transform.position, movePoint.position) <= 0f;
+    }
+
+    private void HandleInputMovement()
+    {
+        Vector3 newPos = movePoint.position;
+        bool moveNPC = false;
+
+        // Horizontal input
+        float h = Input.GetAxisRaw("Horizontal");
+        if (Mathf.Abs(h) == 1)
+        {
+            newPos += new Vector3(h, 0f, 0f);
+            moveNPC = true;
+        }
+
+        // Vertical input
+        float v = Input.GetAxisRaw("Vertical");
+        if (Mathf.Abs(v) == 1)
+        {
+            newPos += new Vector3(0f, v, 0f);
+            moveNPC = true;
+        }
+
+        // Check if target tile exists
+        Vector3Int cellPos = tileMap.WorldToCell(newPos);
+        TileBase tile = tileMap.GetTile(cellPos);
+        if (tile != null && tile.name == "tiletest_1")
+        {
+            Debug.Log("Tile found at " + cellPos + ": " + tile.name);
+        }
+
+        // Move parasite
+        movePoint.position = newPos;
+
+        if (moveNPC) npcAction();
+    }
+
+    private void CheckForPossession()
+    {
+        // Loop backwards for safe removal
+        for (int i = objectsInLayer.Count - 1; i >= 0; i--)
+        {
+            GameObject obj = objectsInLayer[i];
+            float distance = Vector3.Distance(parasite.transform.position, obj.transform.position);
+
+            if (distance <= 1f) // threshold to possess
             {
-                Debug.Log("Tile found at " + cellPos + ": " + tile.name);
-            }
-            else if (Input.GetKeyDown(KeyCode.Space))
-            {
-                for (int i = 0; i < objectsInLayer.Count; i++)
+                switch (obj.tag)
                 {
-                    GameObject obj = objectsInLayer[i];
-
-                    if (Vector3.Distance(parasite.transform.position, obj.transform.position) <= 2.07)
-                    {
-                        Debug.Log("Destroying and removing: " + obj.name);
-
-                        // --- Action: Destroy the GameObject in the scene ---
+                    case "scientist":
+                        isInfected = "scientist";
+                        sr.sprite = scientistSpriteBlue; // adjust for yellow/blue if needed
                         Destroy(obj);
-
-                        // --- Action: Remove the reference from the C# list ---
                         objectsInLayer.RemoveAt(i);
-
-                        // Your existing logic for movement/targeting
-                        movePoint.position = obj.transform.position;
-                        switch (obj.tag)
-                        {
-                            case "scientist":
-                                isInfected = "scientist"; sr.sprite = scientistSpriteBlue; break;
-                            case "soldier":
-                                isInfected = "sodlier"; sr.sprite = soldierSprite; break;
-                            case "baby":
-                                isInfected = " baby"; sr.sprite = babySprite; break;
-                        }
-
-                        // 💡 OPTIONAL: Since you found one and destroyed it, 
-                        // you can break out of the loop if you don't want to check others.
+                        Debug.Log("Possessed scientist!");
                         break;
-                    }
+
+                    case "baby":
+                        isInfected = "baby";
+                        sr.sprite = babySprite;
+                        Destroy(obj);
+                        objectsInLayer.RemoveAt(i);
+                        Debug.Log("Possessed baby!");
+                        break;
+
+                    // Soldiers cannot be possessed
                 }
-                npcAction();
             }
-            else
+        }
+    }
+
+    private void CheckForSoldierThreat()
+    {
+        foreach (GameObject obj in objectsInLayer)
+        {
+            if (obj.tag == "soldier")
             {
-                movePoint.position = newPos;
-                if (moveNPC || NPCREQUEM) npcAction();
+                float distance = Vector3.Distance(parasite.transform.position, obj.transform.position);
+                if (distance <= 3f) // threat range
+                {
+                    Debug.Log("Parasite killed by soldier!");
+                    Destroy(parasite);
+                    return;
+                }
             }
         }
     }
@@ -120,7 +154,7 @@ public class puzzleAction : MonoBehaviour
         foreach (GameObject obj in objectsInLayer)
         {
             NPCLogic npc = obj.GetComponent<NPCLogic>();
-            if (npc != null) // Component varsa çalıştır
+            if (npc != null)
             {
                 npc.Action();
             }

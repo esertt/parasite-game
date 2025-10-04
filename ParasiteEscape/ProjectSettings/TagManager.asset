@@ -5,9 +5,12 @@ TagManager:
   serializedVersion: 3
   tags:
   - NPC
-  - scientist
   - baby
   - soldier
+  - yellowscientist
+  - bluescientist
+  - yellowdoor
+  - bluedoor
   layers:
   - Default
   - TransparentFX

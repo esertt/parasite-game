@@ -27,7 +27,7 @@ public class NPCLogic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameObject.tag == "baby" || gameObject.tag == "scientist")
+        if (gameObject.tag == "baby" || gameObject.tag == "yellowscientist" || gameObject.tag == "bluescientist")
         {
             gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, movePoint.position, speed * Time.deltaTime);
         }
@@ -44,7 +44,7 @@ public class NPCLogic : MonoBehaviour
      */
     public void Action()
     {
-        if (gameObject.tag == "scientist" || gameObject.tag == "baby")
+        if (gameObject.tag == "yellowscientist" || gameObject.tag == "bluescientist" || gameObject.tag == "baby")
         {
             switch (movement[currentMovement])
             {
