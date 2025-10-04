@@ -4,7 +4,7 @@ using UnityEngine.Tilemaps;
 
 public class puzzleAction : MonoBehaviour
 {
-    private bool isInfected;
+    private string isInfected;
     private bool actionReady;
     private List<GameObject> objectsInLayer = new List<GameObject>();
 
@@ -17,7 +17,7 @@ public class puzzleAction : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        isInfected = false;
+        isInfected = "parasite";
         movePoint.parent = null;
         actionReady = true;
 
@@ -38,7 +38,6 @@ public class puzzleAction : MonoBehaviour
     void Update()
     {
         parasite.transform.position = Vector3.MoveTowards(parasite.transform.position, movePoint.position, speed * Time.deltaTime);
-
 
 
         if (Vector3.Distance(parasite.transform.position, movePoint.position) <= 0f) actionReady = true;
@@ -66,14 +65,34 @@ public class puzzleAction : MonoBehaviour
             {
                 Debug.Log("Tile found at " + cellPos + ": " + tile.name);
             }
-            else if(Input.GetKeyDown(KeyCode.Space))
+            else if (Input.GetKeyDown(KeyCode.Space))
             {
-                foreach (GameObject obj in objectsInLayer)
+                for (int i = 0; i < objectsInLayer.Count; i++)
                 {
+                    GameObject obj = objectsInLayer[i];
 
                     if (Vector3.Distance(parasite.transform.position, obj.transform.position) <= 2.07)
                     {
-                        Debug.Log(obj.name);
+                        Debug.Log("Destroying and removing: " + obj.name);
+
+                        // --- Action: Destroy the GameObject in the scene ---
+                        Destroy(obj);
+
+                        // --- Action: Remove the reference from the C# list ---
+                        objectsInLayer.RemoveAt(i);
+
+                        // Your existing logic for movement/targeting
+                        switch (obj.tag)
+                        {
+                            case "scientist":
+                            case "soldier":
+                            case "baby":
+                                movePoint.position = obj.transform.position;
+                                break;
+                        }
+
+                        // 💡 OPTIONAL: Since you found one and destroyed it, 
+                        // you can break out of the loop if you don't want to check others.
                         break;
                     }
                 }
@@ -92,13 +111,10 @@ public class puzzleAction : MonoBehaviour
         foreach (GameObject obj in objectsInLayer)
         {
             NPCLogic npc = obj.GetComponent<NPCLogic>();
-            if (npc != null) // Component varsa çalýþtýr
-
+            if (npc != null) // Component varsa çalıştır
             {
                 npc.Action();
             }
         }
     }
 }
-
-
