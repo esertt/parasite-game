@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 1293868860588943404}
   - component: {fileID: 8968952982353885037}
   m_Layer: 6
-  m_Name: asker
+  m_Name: Soldier_white
   m_TagString: soldier
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

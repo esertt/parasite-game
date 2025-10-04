@@ -7,6 +7,8 @@ public class puzzleAction : MonoBehaviour
     private string isInfected;
     private bool actionReady;
     private List<GameObject> objectsInLayer = new List<GameObject>();
+    private SpriteRenderer sr;
+    private Sprite sprite;
 
     public int targetLayer;
     public float speed = 5.0f;
@@ -14,12 +16,17 @@ public class puzzleAction : MonoBehaviour
     public Tilemap tileMap;
     public GameObject parasite;
     public bool NPCREQUEM = false;
+    public Sprite scientistSpriteYellow;
+    public Sprite scientistSpriteBlue;
+    public Sprite babySprite;
+    public Sprite soldierSprite;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         isInfected = "parasite";
         movePoint.parent = null;
         actionReady = true;
+        sr = parasite.GetComponent<SpriteRenderer>();
 
         // Get all objects in the scene
         GameObject[] allObjects = GameObject.FindObjectsByType<GameObject>(FindObjectsSortMode.None);
@@ -82,13 +89,15 @@ public class puzzleAction : MonoBehaviour
                         objectsInLayer.RemoveAt(i);
 
                         // Your existing logic for movement/targeting
+                        movePoint.position = obj.transform.position;
                         switch (obj.tag)
                         {
                             case "scientist":
+                                isInfected = "scientist"; sr.sprite = scientistSpriteBlue; break;
                             case "soldier":
+                                isInfected = "sodlier"; sr.sprite = soldierSprite; break;
                             case "baby":
-                                movePoint.position = obj.transform.position;
-                                break;
+                                isInfected = " baby"; sr.sprite = babySprite; break;
                         }
 
                         // 💡 OPTIONAL: Since you found one and destroyed it, 
