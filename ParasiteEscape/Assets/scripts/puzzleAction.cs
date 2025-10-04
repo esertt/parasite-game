@@ -8,6 +8,8 @@ public class puzzleAction : MonoBehaviour
     private bool actionReady;
     private List<GameObject> objectsInLayer = new List<GameObject>();
 
+    
+
     public int targetLayer;
     public float speed = 5.0f;
     public Transform movePoint;
@@ -30,12 +32,6 @@ public class puzzleAction : MonoBehaviour
             {
                 objectsInLayer.Add(obj);
             }
-        }
-
-        // Bulunan objelerle bir þeyler yap
-        foreach (GameObject obj in objectsInLayer)
-        {
-            Debug.Log("Found object in layer: " + obj.name);
         }
     }
 
@@ -72,6 +68,7 @@ public class puzzleAction : MonoBehaviour
             }
             else if(Input.GetKeyDown(KeyCode.Space))
             {
+                
                 npcAction();
             }
             else

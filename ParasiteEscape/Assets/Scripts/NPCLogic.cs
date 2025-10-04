@@ -11,6 +11,7 @@ public class NPCLogic : MonoBehaviour
 
     //soldier special variables
 
+
     private int arraySize;
     private int currentMovement;
     private SpriteRenderer sr;
