@@ -40,6 +40,7 @@ public class puzzleAction : MonoBehaviour
         parasite.transform.position = Vector3.MoveTowards(parasite.transform.position, movePoint.position, speed * Time.deltaTime);
 
 
+
         if (Vector3.Distance(parasite.transform.position, movePoint.position) <= 0f) actionReady = true;
         else actionReady = false;
         if (actionReady)
@@ -65,10 +66,11 @@ public class puzzleAction : MonoBehaviour
             {
                 Debug.Log("Tile found at " + cellPos + ": " + tile.name);
             }
-            else if (Input.GetKeyDown(KeyCode.Space))
+            else if(Input.GetKeyDown(KeyCode.Space))
             {
                 foreach (GameObject obj in objectsInLayer)
                 {
+
                     if (Vector3.Distance(parasite.transform.position, obj.transform.position) <= 2.07)
                     {
                         Debug.Log(obj.name);
@@ -91,9 +93,12 @@ public class puzzleAction : MonoBehaviour
         {
             NPCLogic npc = obj.GetComponent<NPCLogic>();
             if (npc != null) // Component varsa çalýþtýr
+
             {
                 npc.Action();
             }
         }
     }
 }
+
+

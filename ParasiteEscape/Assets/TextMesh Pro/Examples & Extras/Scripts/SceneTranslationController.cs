@@ -1,14 +1,18 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using UnityEngine.Video;
 using System.Collections;
 
 public class SceneTransitionController : MonoBehaviour
 {
     public CanvasGroup mainMenu;
     public CanvasGroup fadeOverlay;
+    public RawImage smallVideoImage;   // RawImage to display video
+    public VideoPlayer smallVideoPlayer; // VideoPlayer component
     public AudioSource transitionSound;
     public float fadeDuration = 1.5f;
-    public string nextSceneName = "LoreScene1";
+    public string nextSceneName = "Chapter1";
 
     public void OnStartButtonClicked()
     {
@@ -17,17 +21,29 @@ public class SceneTransitionController : MonoBehaviour
 
     private IEnumerator TransitionToChapter()
     {
-        // Start the fade-out of main menu
+        // Fade out main menu
         yield return StartCoroutine(FadeCanvas(mainMenu, 1, 0, fadeDuration / 2));
 
-        // Play sound (optional)
+        // Play sound if assigned
         if (transitionSound != null)
             transitionSound.Play();
 
         // Fade to black
         yield return StartCoroutine(FadeCanvas(fadeOverlay, 0, 1, fadeDuration));
 
-        // Load next scene
+        // Play video
+        if (smallVideoPlayer != null && smallVideoImage != null)
+        {
+            smallVideoImage.gameObject.SetActive(true);
+            smallVideoPlayer.Play();
+            while (smallVideoPlayer.isPlaying)
+            {
+                yield return null;
+            }
+            smallVideoImage.gameObject.SetActive(false);
+        }
+
+        // Load first chapter
         SceneManager.LoadScene(nextSceneName);
     }
 

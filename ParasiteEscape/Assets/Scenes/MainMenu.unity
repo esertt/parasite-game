@@ -1153,9 +1153,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TMPro.Examples.TMP_ExampleScript_01
   mainMenu: {fileID: 1258230228}
   fadeOverlay: {fileID: 1749307578}
+  smallVideoImage: {fileID: 0}
+  smallVideoPlayer: {fileID: 0}
   transitionSound: {fileID: 1732774389}
   fadeDuration: 1.5
-  nextSceneName: LoreScene1
+  nextSceneName: Chapter1
 --- !u!4 &1487229731
 Transform:
   m_ObjectHideFlags: 0
