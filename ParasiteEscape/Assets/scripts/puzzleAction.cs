@@ -8,8 +8,6 @@ public class puzzleAction : MonoBehaviour
     private bool actionReady;
     private List<GameObject> objectsInLayer = new List<GameObject>();
 
-    
-
     public int targetLayer;
     public float speed = 5.0f;
     public Transform movePoint;
@@ -31,6 +29,7 @@ public class puzzleAction : MonoBehaviour
             if (obj.layer == targetLayer)
             {
                 objectsInLayer.Add(obj);
+                Debug.Log(obj.name);
             }
         }
     }
@@ -68,7 +67,14 @@ public class puzzleAction : MonoBehaviour
             }
             else if(Input.GetKeyDown(KeyCode.Space))
             {
-                
+                foreach(GameObject obj in objectsInLayer)
+                { 
+                    if (Vector3.Distance(parasite.transform.position, obj.transform.position) <= 2.07)
+                    {
+                        Debug.Log(obj.name);
+                        break;
+                    }
+                }
                 npcAction();
             }
             else
