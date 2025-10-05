@@ -257,9 +257,12 @@ public class PuzzleAction : MonoBehaviour
         {
             if (l == null) continue;
             if (!l.isOn) continue;
-            if (l.LaserRay != null && l.LaserRay.activeInHierarchy)
+
+            foreach (GameObject laserRay in l.LaserRays)
             {
-                if (tileMap.WorldToCell(l.LaserRay.transform.position) == cellPos)
+                if (laserRay != null && laserRay.activeInHierarchy)
+            {
+                if (tileMap.WorldToCell(laserRay.transform.position) == cellPos)
                 {
                     Debug.Log("Parasite hit laser ray at " + cellPos + " - dying.");
                     if (parasiteHitWall != null)
@@ -288,6 +291,7 @@ public class PuzzleAction : MonoBehaviour
                     return;
                 }
             }
+            }            
         }
     }
 

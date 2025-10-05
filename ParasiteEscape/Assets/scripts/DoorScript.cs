@@ -41,15 +41,15 @@ public class DoorScript : MonoBehaviour
     {
         if (isOpen)
         {
-            Debug.Log($"Door.TryInteractAt: door={name} already open; interactorTag={interactorTag}");
+            // Debug.Log($"Door.TryInteractAt: door={name} already open; interactorTag={interactorTag}");
             return false;
         }
 
         float d = Vector3.Distance(transform.position, interactorPosition);
-        Debug.Log($"Door.TryInteractAt: door={name} interactorTag={interactorTag} dist={d:F2} radius={interactionRadius}");
+        // Debug.Log($"Door.TryInteractAt: door={name} interactorTag={interactorTag} dist={d:F2} radius={interactionRadius}");
         if (d > interactionRadius)
         {
-            Debug.Log($"Door.TryInteractAt: door={name} interactor out of range (dist {d:F2})");
+            // Debug.Log($"Door.TryInteractAt: door={name} interactor out of range (dist {d:F2})");
             return false; // out of range
         }
 
@@ -59,12 +59,12 @@ public class DoorScript : MonoBehaviour
 
         if ((doorColor == DoorColor.Yellow && isYellow) || (doorColor == DoorColor.Blue && isBlue))
         {
-            Debug.Log($"Door.TryInteractAt: door={name} matched by {interactorTag}; opening and transitioning to {nextChapterScene}");
+            // Debug.Log($"Door.TryInteractAt: door={name} matched by {interactorTag}; opening and transitioning to {nextChapterScene}");
             OpenDoor();
         }
         else
         {
-            Debug.Log($"Door.TryInteractAt: door={name} did NOT match interactorTag={interactorTag}; playing lockedSound");
+            // Debug.Log($"Door.TryInteractAt: door={name} did NOT match interactorTag={interactorTag}; playing lockedSound");
             if (lockedSound != null) lockedSound.Play();
         }
 

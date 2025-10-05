@@ -12,6 +12,7 @@ TagManager:
   - yellowdoor
   - bluedoor
   - parasite
+  - Ray
   layers:
   - Default
   - TransparentFX
