@@ -471,7 +471,7 @@ public class PuzzleAction : MonoBehaviour
                     {
                         string pTag = possessedNPC.tag != null ? possessedNPC.tag.ToLower() : "";
                         KillPossessed();
-                        float wait = 0.000f;
+                        float wait = 0.005f;
                         if (pTag == "baby" && babyDie != null && babyDie.clip != null) wait = babyDie.clip.length;
                         else if ((pTag == "yellowscientist" || pTag == "bluescientist") && scientistDie != null && scientistDie.clip != null) wait = scientistDie.clip.length;
                         StartCoroutine(WaitAndLoadGameOver(wait));
