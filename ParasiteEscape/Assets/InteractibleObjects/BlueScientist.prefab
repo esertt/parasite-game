@@ -81,7 +81,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 13161043, guid: 773f9cf8febb4724e93930f5154f46a8, type: 3}
+  m_Sprite: {fileID: 947382763, guid: 773f9cf8febb4724e93930f5154f46a8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -107,8 +107,8 @@ MonoBehaviour:
   speed: 0
   movement: 01000000020000000300000004000000
   movePoint: {fileID: 5447379051674310526}
-  up: {fileID: -567201487, guid: 773f9cf8febb4724e93930f5154f46a8, type: 3}
-  down: {fileID: 13161043, guid: 773f9cf8febb4724e93930f5154f46a8, type: 3}
+  up: {fileID: -350469006, guid: 773f9cf8febb4724e93930f5154f46a8, type: 3}
+  down: {fileID: 947382763, guid: 773f9cf8febb4724e93930f5154f46a8, type: 3}
 --- !u!1 &700746799321018623
 GameObject:
   m_ObjectHideFlags: 0

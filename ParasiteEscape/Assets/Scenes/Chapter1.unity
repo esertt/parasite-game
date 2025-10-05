@@ -188,6 +188,10 @@ PrefabInstance:
       propertyPath: 'movement.Array.data[11]'
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8909756157280500853, guid: 1349946a3d42042aea434a9a0766f194, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 947382763, guid: 773f9cf8febb4724e93930f5154f46a8, type: 3}
     - target: {fileID: 9132511499217538954, guid: 1349946a3d42042aea434a9a0766f194, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.5
