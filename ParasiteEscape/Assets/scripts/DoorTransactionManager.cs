@@ -31,6 +31,7 @@ public class DoorTransitionManager : MonoBehaviour
             yield return new WaitForSeconds(preLoadDelay);
 
         // Load next scene immediately
+        LevelTracker.Instance.currentLevel = sceneName;
         SceneManager.LoadScene(sceneName);
     }
 

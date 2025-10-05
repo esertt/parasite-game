@@ -9,6 +9,7 @@ public class PuzzleAction : MonoBehaviour
     public GameObject parasite;
     public Transform movePoint;
     public float speed = 5f;
+    public float threatRange = 2f; // distance at which soldiers can kill the parasite
     private SpriteRenderer sr;
     private string isInfected = "parasite";
     private Sprite originalParasiteSprite;
@@ -454,7 +455,7 @@ public class PuzzleAction : MonoBehaviour
             if (objTagLower == "soldier")
             {
                 float distance = Vector3.Distance(parasite.transform.position, obj.transform.position);
-                if (distance <= 2f) // threat range
+                if (distance <= threatRange) // threat range
                 {
                     // don't kill parasite if it's currently possessing a baby
                     string infectedLower = isInfected != null ? isInfected.ToLower() : "";
