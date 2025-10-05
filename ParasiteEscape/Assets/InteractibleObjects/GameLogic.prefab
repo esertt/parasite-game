@@ -57,7 +57,7 @@ MonoBehaviour:
   parasite: {fileID: 0}
   movePoint: {fileID: 0}
   speed: 5
-  threatRange: 2.1
+  threatRange: 3
   babyDie: {fileID: 2964389029757275320}
   scientistDie: {fileID: 4560393484313423403}
   gunShot: {fileID: 8076799038783014360}
