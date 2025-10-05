@@ -267,12 +267,24 @@ public class PuzzleAction : MonoBehaviour
                         if (parasiteHitWall.clip != null) parasiteHitWall.PlayOneShot(parasiteHitWall.clip);
                         else parasiteHitWall.Play();
                     }
-                    // If currently possessing someone, destroy them first
+                    // If currently possessing someone, destroy them (plays baby/scientist death SFX)
+                    // and wait for that clip to finish before loading GameOver.
                     if (possessedNPC != null)
                     {
+                        string pTag = possessedNPC.tag != null ? possessedNPC.tag.ToLower() : "";
+                        // Play and remove possessed NPC (KillPossessed will play correct sfx)
                         KillPossessed();
+                        // determine clip length to wait for
+                        float wait = 0.1f;
+                        if (pTag == "baby" && babyDie != null && babyDie.clip != null) wait = babyDie.clip.length;
+                        else if ((pTag == "yellowscientist" || pTag == "bluescientist") && scientistDie != null && scientistDie.clip != null) wait = scientistDie.clip.length;
+                        StartCoroutine(WaitAndLoadGameOver(wait));
                     }
-                    DieAndLoadGameOver();
+                    else
+                    {
+                        // no possessed NPC: immediately load GameOver
+                        SceneManager.LoadScene("GameOver");
+                    }
                     return;
                 }
             }
@@ -454,7 +466,20 @@ public class PuzzleAction : MonoBehaviour
                             if (gunShot.clip != null) gunShot.PlayOneShot(gunShot.clip);
                             else gunShot.Play();
                         }
-                    DieAndLoadGameOver();
+                    // if possessing someone, play their death SFX instead of the parasite's, then wait and load
+                    if (possessedNPC != null)
+                    {
+                        string pTag = possessedNPC.tag != null ? possessedNPC.tag.ToLower() : "";
+                        KillPossessed();
+                        float wait = 0.000f;
+                        if (pTag == "baby" && babyDie != null && babyDie.clip != null) wait = babyDie.clip.length;
+                        else if ((pTag == "yellowscientist" || pTag == "bluescientist") && scientistDie != null && scientistDie.clip != null) wait = scientistDie.clip.length;
+                        StartCoroutine(WaitAndLoadGameOver(wait));
+                    }
+                    else
+                    {
+                        SceneManager.LoadScene("GameOver");
+                    }
                     // TODO: Game over scene trigger
                     return;
                 }
@@ -474,13 +499,10 @@ public class PuzzleAction : MonoBehaviour
             }
         }
     }
-
-    // Centralized death handler: load the GameOver scene when parasite dies
-    private void DieAndLoadGameOver()
+    private System.Collections.IEnumerator WaitAndLoadGameOver(float waitSeconds)
     {
-        Debug.Log("Parasite died — loading GameOver scene.");
-        // Optionally play a death SFX here before loading
-        // Ensure the scene name matches your build settings
+        if (waitSeconds > 0f)
+            yield return new WaitForSecondsRealtime(waitSeconds);
         SceneManager.LoadScene("GameOver");
     }
 }
