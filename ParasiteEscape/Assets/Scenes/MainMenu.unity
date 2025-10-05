@@ -1157,7 +1157,7 @@ MonoBehaviour:
   smallVideoPlayer: {fileID: 0}
   transitionSound: {fileID: 1732774389}
   fadeDuration: 1.5
-  nextSceneName: Chapter1
+  nextSceneName: Tekin
 --- !u!4 &1487229731
 Transform:
   m_ObjectHideFlags: 0

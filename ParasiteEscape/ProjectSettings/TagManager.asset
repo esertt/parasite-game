@@ -11,6 +11,7 @@ TagManager:
   - bluescientist
   - yellowdoor
   - bluedoor
+  - parasite
   layers:
   - Default
   - TransparentFX

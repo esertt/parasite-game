@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f02c6460be5a48c6aac967dc47bf2d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  fadeOverlay: {fileID: 0}
+  fadeOverlay: {fileID: 1532418047502390943, guid: 5ff6eebf707894a83b9b84e56e1951c2, type: 3}
   chapterSound: {fileID: 560144912278809660}
   fadeDuration: 1.5
 --- !u!82 &560144912278809660
@@ -60,7 +60,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 905d6f31c4f9442bfa3ae65eac0046ed, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

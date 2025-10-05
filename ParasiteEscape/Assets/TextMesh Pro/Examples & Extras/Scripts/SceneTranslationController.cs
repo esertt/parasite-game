@@ -12,7 +12,7 @@ public class SceneTransitionController : MonoBehaviour
     public VideoPlayer smallVideoPlayer; // VideoPlayer component
     public AudioSource transitionSound;
     public float fadeDuration = 1.5f;
-    public string nextSceneName = "Chapter1";
+    public string nextSceneName;
 
     public void OnStartButtonClicked()
     {

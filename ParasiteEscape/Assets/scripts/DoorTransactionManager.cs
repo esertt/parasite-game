@@ -5,9 +5,14 @@ using System.Collections;
 
 public class DoorTransitionManager : MonoBehaviour
 {
-    public CanvasGroup fadeOverlay;       // full-screen black overlay
     public AudioSource chapterSound;      // sound when chapter starts
-    public float fadeDuration = 1.5f;
+    public float preLoadDelay = 0.1f;     // optional short delay to let sound start
+
+    // make sure manager persists so audio isn't destroyed during scene load
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
 
     // Call this from door
     public void LoadChapter(string sceneName)
@@ -17,30 +22,17 @@ public class DoorTransitionManager : MonoBehaviour
 
     private IEnumerator Transition(string sceneName)
     {
-        // Fade in overlay
-        if (fadeOverlay != null)
-            yield return StartCoroutine(FadeCanvas(fadeOverlay, 0, 1, fadeDuration));
-
-        // Play chapter sound
+        // Play chapter sound if assigned
         if (chapterSound != null)
             chapterSound.Play();
 
-        // Optional wait to let sound start
-        yield return new WaitForSeconds(0.1f);
+        // optional small delay so the sound has time to start
+        if (preLoadDelay > 0f)
+            yield return new WaitForSeconds(preLoadDelay);
 
-        // Load next scene
+        // Load next scene immediately
         SceneManager.LoadScene(sceneName);
     }
 
-    private IEnumerator FadeCanvas(CanvasGroup canvasGroup, float start, float end, float duration)
-    {
-        float elapsed = 0f;
-        while (elapsed < duration)
-        {
-            elapsed += Time.deltaTime;
-            canvasGroup.alpha = Mathf.Lerp(start, end, elapsed / duration);
-            yield return null;
-        }
-        canvasGroup.alpha = end;
-    }
+    // Fade removed — transitions are now just sound + immediate scene load
 }
