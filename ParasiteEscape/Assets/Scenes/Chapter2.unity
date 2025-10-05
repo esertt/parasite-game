@@ -247,8 +247,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -6866951614057097999, guid: f81e45cd9644a4517bccb5e59ce9fcfc, type: 3}
       propertyPath: nextChapterScene
-      value: Tekin
+      value: Chapter3
       objectReference: {fileID: 0}
+    - target: {fileID: -6866951614057097999, guid: f81e45cd9644a4517bccb5e59ce9fcfc, type: 3}
+      propertyPath: transitionManager
+      value: 
+      objectReference: {fileID: 1875044143}
     - target: {fileID: 101555296428838824, guid: f81e45cd9644a4517bccb5e59ce9fcfc, type: 3}
       propertyPath: m_Name
       value: YellowDoor
@@ -616,6 +620,74 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7242178298697386839, guid: a01f7ba1a5215cb4f9d50ee9a91f83cd, type: 3}
   m_PrefabInstance: {fileID: 2045747477}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1875044142
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2673486319301082316, guid: 325d39aacfa6b45fb9b70140fb5d2665, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.88833
+      objectReference: {fileID: 0}
+    - target: {fileID: 2673486319301082316, guid: 325d39aacfa6b45fb9b70140fb5d2665, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.23203
+      objectReference: {fileID: 0}
+    - target: {fileID: 2673486319301082316, guid: 325d39aacfa6b45fb9b70140fb5d2665, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2673486319301082316, guid: 325d39aacfa6b45fb9b70140fb5d2665, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2673486319301082316, guid: 325d39aacfa6b45fb9b70140fb5d2665, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2673486319301082316, guid: 325d39aacfa6b45fb9b70140fb5d2665, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2673486319301082316, guid: 325d39aacfa6b45fb9b70140fb5d2665, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2673486319301082316, guid: 325d39aacfa6b45fb9b70140fb5d2665, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2673486319301082316, guid: 325d39aacfa6b45fb9b70140fb5d2665, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2673486319301082316, guid: 325d39aacfa6b45fb9b70140fb5d2665, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7088228127009755839, guid: 325d39aacfa6b45fb9b70140fb5d2665, type: 3}
+      propertyPath: m_Name
+      value: DoorTransactionManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 325d39aacfa6b45fb9b70140fb5d2665, type: 3}
+--- !u!114 &1875044143 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1481231836752707589, guid: 325d39aacfa6b45fb9b70140fb5d2665, type: 3}
+  m_PrefabInstance: {fileID: 1875044142}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f02c6460be5a48c6aac967dc47bf2d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1001 &2045747477
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -745,3 +817,4 @@ SceneRoots:
   - {fileID: 313495395}
   - {fileID: 1311912152}
   - {fileID: 2045747477}
+  - {fileID: 1875044142}
