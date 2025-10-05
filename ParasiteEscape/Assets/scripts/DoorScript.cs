@@ -7,7 +7,7 @@ public class DoorScript : MonoBehaviour
     public AudioSource lockedSound;
     public DoorTransitionManager transitionManager;
     public string nextChapterScene;
-    public float interactionRadius = 0.6f; // distance-based interaction radius
+    public float interactionRadius = 1.01f; // distance-based interaction radius
     public string[] interactTags = new string[] { "parasite", "yellowscientist", "bluescientist" };
     public float autoCheckInterval = 0.2f; // seconds between automatic proximity checks
     private float lastAutoCheck = 0f;

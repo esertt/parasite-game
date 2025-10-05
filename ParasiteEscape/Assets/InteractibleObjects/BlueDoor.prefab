@@ -218,7 +218,7 @@ MonoBehaviour:
   lockedSound: {fileID: 6910959805497962144}
   transitionManager: {fileID: 1481231836752707589, guid: 325d39aacfa6b45fb9b70140fb5d2665, type: 3}
   nextChapterScene: 
-  interactionRadius: 0.6
+  interactionRadius: 1.01
   interactTags:
   - parasite
   - yellowscientist

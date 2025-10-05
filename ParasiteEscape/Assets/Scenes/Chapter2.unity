@@ -146,7 +146,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5468009903952072623, guid: 871da95d207c96d42bb84763ea89fd9a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 5468009903952072623, guid: 871da95d207c96d42bb84763ea89fd9a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -241,6 +241,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6866951614057097999, guid: f81e45cd9644a4517bccb5e59ce9fcfc, type: 3}
+      propertyPath: nextChapterScene
+      value: Tekin
+      objectReference: {fileID: 0}
     - target: {fileID: 101555296428838824, guid: f81e45cd9644a4517bccb5e59ce9fcfc, type: 3}
       propertyPath: m_Name
       value: YellowDoor
@@ -626,7 +630,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3916709576034249052, guid: a01f7ba1a5215cb4f9d50ee9a91f83cd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 3916709576034249052, guid: a01f7ba1a5215cb4f9d50ee9a91f83cd, type: 3}
       propertyPath: m_LocalRotation.w
