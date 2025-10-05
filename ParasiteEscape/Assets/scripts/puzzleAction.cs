@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.SceneManagement;
 
 public class PuzzleAction : MonoBehaviour
 {
@@ -271,7 +272,7 @@ public class PuzzleAction : MonoBehaviour
                     {
                         KillPossessed();
                     }
-                    Destroy(parasite);
+                    DieAndLoadGameOver();
                     return;
                 }
             }
@@ -453,7 +454,7 @@ public class PuzzleAction : MonoBehaviour
                             if (gunShot.clip != null) gunShot.PlayOneShot(gunShot.clip);
                             else gunShot.Play();
                         }
-                    Destroy(parasite);
+                    DieAndLoadGameOver();
                     // TODO: Game over scene trigger
                     return;
                 }
@@ -472,5 +473,14 @@ public class PuzzleAction : MonoBehaviour
                 npc.Action();
             }
         }
+    }
+
+    // Centralized death handler: load the GameOver scene when parasite dies
+    private void DieAndLoadGameOver()
+    {
+        Debug.Log("Parasite died — loading GameOver scene.");
+        // Optionally play a death SFX here before loading
+        // Ensure the scene name matches your build settings
+        SceneManager.LoadScene("GameOver");
     }
 }
