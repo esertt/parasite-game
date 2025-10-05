@@ -450,7 +450,7 @@ public class PuzzleAction : MonoBehaviour
             if (objTagLower == "soldier")
             {
                 float distance = Vector3.Distance(parasite.transform.position, obj.transform.position);
-                if (distance <= 5f) // threat range
+                if (distance <= 2f) // threat range
                 {
                     // don't kill parasite if it's currently possessing a baby
                     string infectedLower = isInfected != null ? isInfected.ToLower() : "";

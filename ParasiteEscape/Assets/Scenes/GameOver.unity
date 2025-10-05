@@ -300,7 +300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 190331730a91242bca3105561018bade, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameOverMenu
-  firstChapterSceneName: Tekin
+  firstChapterSceneName: Chapter1
 --- !u!1 &767976084
 GameObject:
   m_ObjectHideFlags: 0
