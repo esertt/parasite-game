@@ -78,6 +78,10 @@ public class PuzzleAction : MonoBehaviour
             CheckForPossession();
             CheckForSoldierThreat();
             if (NPCREQUEM) npcAction();
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                SceneManager.LoadScene(LevelTracker.Instance != null ? LevelTracker.Instance.currentLevel : "Chapter1");
+            }
         }
     }
 

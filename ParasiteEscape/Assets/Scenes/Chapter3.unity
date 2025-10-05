@@ -255,7 +255,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -6866951614057097999, guid: f81e45cd9644a4517bccb5e59ce9fcfc, type: 3}
       propertyPath: nextChapterScene
-      value: Chapter2
+      value: Chapter4
       objectReference: {fileID: 0}
     - target: {fileID: -6866951614057097999, guid: f81e45cd9644a4517bccb5e59ce9fcfc, type: 3}
       propertyPath: transitionManager
