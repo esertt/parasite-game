@@ -9,8 +9,6 @@ public class MainMenu : MonoBehaviour
 {
     public Button startButton, optionsButton, quitButton;
 
-    // Configurable scene names so you can set them in the Inspector
-    public string cinematicSceneName = "Cinematic"; // scene played before chapter 1
     public string optionsSceneName = "Options";
     
     // Audio for UI clicks
@@ -55,15 +53,6 @@ public class MainMenu : MonoBehaviour
     public void playGame()
     {
         PlayClickSound();
-
-        if (!string.IsNullOrEmpty(cinematicSceneName))
-        {
-            if (sceneLoadDelay > 0f)
-                StartCoroutine(LoadSceneAfterDelayName(cinematicSceneName));
-            else
-                SceneManager.LoadScene(cinematicSceneName);
-            return;
-        }
 
         // fallback: load next scene in build order
         int nextIndex = SceneManager.GetActiveScene().buildIndex + 1;

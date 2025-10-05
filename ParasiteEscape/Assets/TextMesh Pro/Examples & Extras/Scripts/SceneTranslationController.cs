@@ -8,8 +8,6 @@ public class SceneTransitionController : MonoBehaviour
 {
     public CanvasGroup mainMenu;
     public CanvasGroup fadeOverlay;
-    public RawImage smallVideoImage;   // RawImage to display video
-    public VideoPlayer smallVideoPlayer; // VideoPlayer component
     public AudioSource transitionSound;
     public float fadeDuration = 1.5f;
     public string nextSceneName;
@@ -30,18 +28,6 @@ public class SceneTransitionController : MonoBehaviour
 
         // Fade to black
         yield return StartCoroutine(FadeCanvas(fadeOverlay, 0, 1, fadeDuration));
-
-        // Play video
-        if (smallVideoPlayer != null && smallVideoImage != null)
-        {
-            smallVideoImage.gameObject.SetActive(true);
-            smallVideoPlayer.Play();
-            while (smallVideoPlayer.isPlaying)
-            {
-                yield return null;
-            }
-            smallVideoImage.gameObject.SetActive(false);
-        }
 
         // Load first chapter
         SceneManager.LoadScene(nextSceneName);
